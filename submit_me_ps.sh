@@ -2,6 +2,9 @@
 
 # check that hadronizer fragment has subgridpack in the name instead of gridpack !!!
 
+###
+SUBMIT=true
+
 ### generic settings
 CHHH=2p45
 TAG=chhh${CHHH} # MYGRIDPACKSTUDIES
@@ -49,5 +52,10 @@ mv ${TAG}.submit ${OUTPUTDIR}
 cd ${OUTPUTDIR}
 
 # submit job 
-echo "condor_submit ${TAG}.submit"
-condor_submit ${TAG}.submit
+if [ "$SUBMIT" = true ]; then
+    echo "condor_submit ${TAG}.submit"
+    condor_submit ${TAG}.submit
+else
+    echo "Not submitting to conder."
+    echo "Change settings in script if wanted"
+fi
