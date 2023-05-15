@@ -13,6 +13,7 @@ GRIDPACK=${TARBALLDIR}/ggHH_slc7_amd64_gcc700_CMSSW_10_6_31_chhh${CHHH}.tgz
 FRAGMENT=HIG-RunIISummer20UL17wmLHEGEN-00209
 OUTPUTFILE=chhh${CHHH}
 OUTPUTDIR=dihiggs/chhh${CHHH}
+DELETE=true
 
 cd ${BASEDIR}
 mkdir -p ${BASEDIR}/${OUTPUTDIR}/{logs,files}
@@ -30,6 +31,7 @@ cp template.sh ${TAG}.sh
 sed -i -e "s|SUBGRIDPACK|${GRIDPACK}|g" ${TAG}.sh 
 sed -i -e "s|SUBFRAGMENT|${FRAGMENT}|g" ${TAG}.sh 
 sed -i -e "s|SUBBASEDIR|${BASEDIR}|g" ${TAG}.sh 
+sed -i -e "s|<DELETE>|${DELETE}|g" ${TAG}.sh 
 chmod +x ${TAG}.sh
 mv ${TAG}.sh ${OUTPUTDIR}
 
