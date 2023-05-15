@@ -1,0 +1,22 @@
+Requirements = ( OpSysAndVer == "CentOS7" )
+# Request_GPUs = 1
+universe          = vanilla
+# Running in local mode with 4 cpu slots
+request_cpus      = 4 
+notification      = Error
+notify_user       = alexander.paasch@desy.de
+initialdir        = SUBBASEDIR/SUBDIR
+# initialdir        = SUBBASEDIR/SUBDIR
+output            = SUBBASEDIR/SUBDIR/logs/chhh$(CHHH).o$(ClusterId).$(Process)
+error             = SUBBASEDIR/SUBDIR/logs/chhh$(CHHH).e$(ClusterId).$(Process)
+log               = SUBBASEDIR/SUBDIR/logs/chhh$(CHHH).$(Cluster).log
+# Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
+# getenv            = True
+RequestMemory     = 8G
+RequestDisk       = 4G
++RequestRuntime   = SUBRUNTIME
+JobBatchName      = SUBDIR
+executable        = SUBBASEDIR/SUBDIR/SUBTAG.sh
+arguments         = SUBCOUPLING SUBNEVENTS $(PROCESS)
+queue SUBNJOBS
+
