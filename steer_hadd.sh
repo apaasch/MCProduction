@@ -2,7 +2,7 @@
 
 CHHH=$1
 ROOT="HIG-RunIISummer20UL17NanoAODv9-00217.root"
-OUTDIR="NanoAODs/dihiggs/$CHHH/"
+OUTDIR="NanoAODs/$CHHH/"
 
 ## TODO: More generalized for not only dihiggs
 if [ -z "$CHHH" ]; then
