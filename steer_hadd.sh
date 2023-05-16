@@ -5,11 +5,14 @@ ROOT="HIG-RunIISummer20UL17NanoAODv9-00217.root"
 OUTDIR="NanoAODs/$CHHH/"
 
 ## TODO: More generalized for not only dihiggs
+
 if [ -z "$CHHH" ]; then
     echo "You probably did not give a coupling!"
     echo "Currently chhh0,chhh1,chhh2p45 or chhh5"
     return 1
 fi
+
+mkdir -p $OUTDIR
 
 ## TODO: More generalized
 ## Idea: Create a list of list and everytime 500 files
