@@ -14,7 +14,7 @@ function setup_cmsenv(){
 }
 
 delete=<DELETE>
-function delete_file() {
+function delete_files() {
   local file=$1
   if [ -f "$file" ]; then
     if [ "$delete" = true ]; then
