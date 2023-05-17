@@ -21,6 +21,7 @@ mkdir -p $OUTDIR
 
 directories_1=()
 directories_2=()
+missing=()
 switch=500
 
 for ((i=0; i<1000; i++)); do
@@ -32,8 +33,30 @@ for ((i=0; i<1000; i++)); do
         fi
     else
         echo "dihiggs/$CHHH/files/run_$i/$ROOT CHECK <-------"
+    	missing+=("dihiggs/$CHHH/files/run_$i/$ROOT")
     fi
 done
 
-python haddnano.py $OUTDIR${CHHH}_1.root "${directories_1[@]}"
-python haddnano.py $OUTDIR${CHHH}_2.root "${directories_2[@]}"
+output_file="${OUTDIR}/missing_files.txt"
+
+# Check if output file exists and delete it if it does
+if [ -f "$output_file" ]; then
+  rm "$output_file"
+fi
+
+for element in "${missing[@]}"; do
+  echo "$element" >> "$output_file"
+done
+
+echo "Do you want to continue with hadd? (y/n)"
+echo "Only 'y' continues, all other options stop program!"
+read opt
+
+if [ "$opt" == "y" ]; then
+	python haddnano.py $OUTDIR${CHHH}_1.root "${directories_1[@]}"
+	python haddnano.py $OUTDIR${CHHH}_2.root "${directories_2[@]}"
+else
+	echo "Do not hadd NanoAODs"
+	return 1
+fi
+
